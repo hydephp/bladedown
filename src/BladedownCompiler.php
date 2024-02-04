@@ -117,7 +117,7 @@ class BladedownCompiler
 
     protected function makePlaceholder(string $component, string $content): string
     {
-        $id = sha1('HydeBladedown['.$component.']'.$content);
+        $id = sha1("$component-$content");
         $format = '<!-- HydeBladedown[%s]%s -->';
         return sprintf($format, $component, $id);
     }
