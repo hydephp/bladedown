@@ -15,9 +15,11 @@ class BladedownCompiler
 
     public function compile(): string
     {
-        return view($this->page->getBladeView(), array_merge($this->page->matter->toArray(), [
+        $data = array_merge($this->page->matter->toArray(), [
             'title' => $this->page->title,
             'content' => $this->page->markdown->toHtml(static::class),
-        ]))->render();
+        ]);
+
+        return view($this->page->getBladeView(), $data)->render();
     }
 }
