@@ -53,6 +53,19 @@ class BladedownCompiler
      */
     protected function preprocess(string $markdown): string
     {
+        // Replace Echo syntax {{ $variable }} with placeholders
+
+        $matches = [];
+        if (preg_match_all('/\{\{.*?\}\}/s', $markdown, $matches)) {
+            foreach ($matches[0] as $match) {
+                $id = sha1('HydeBladedown[Echo]'.$match);
+                $format = '<!-- HydeBladedown[Echo]%s -->';
+                $placeholder = sprintf($format, $id);
+                $this->blocks[$placeholder] = $match;
+                $markdown = str_replace($match, $placeholder, $markdown);
+            }
+        }
+
         return $markdown;
     }
 
