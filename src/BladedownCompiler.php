@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Hyde\Bladedown;
 
 use Hyde\Markdown\Models\Markdown;
-use Illuminate\Support\HtmlString;
 use Illuminate\Support\Facades\Blade;
-use Hyde\Markdown\Processing\BladeDownProcessor;
+use Illuminate\Support\HtmlString;
 
 /**
  * Compiles a BladedownPage instance into the final HTML.
