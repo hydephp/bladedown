@@ -11,7 +11,7 @@ class BladedownPage extends MarkdownPage
     public static string $template = 'hyde::layouts/page';
     public static string $fileExtension = '.blade.md';
 
-    /** @inheritDoc */
+    /** {@inheritDoc} */
     public function compile(): string
     {
         return (new BladedownCompiler($this))->compile();
