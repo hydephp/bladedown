@@ -65,8 +65,7 @@ class BladedownCompiler
         $matches = [];
         if (preg_match_all('/\{\{.*?\}\}/s', $markdown, $matches)) {
             foreach ($matches[0] as $match) {
-                $id = sha1('HydeBladedown[Echo]'.$match);
-                $placeholder = $this->makePlaceholder('Echo', $id);
+                $placeholder = $this->makePlaceholder('Echo', $match);
                 $this->blocks[$placeholder] = $match;
                 $markdown = str_replace($match, $placeholder, $markdown);
             }
@@ -116,8 +115,9 @@ class BladedownCompiler
         return Markdown::render($markdown, BladedownPage::class);
     }
 
-    protected function makePlaceholder(string $component, string $id): string
+    protected function makePlaceholder(string $component, string $content): string
     {
+        $id = sha1('HydeBladedown['.$component.']'.$content);
         $format = '<!-- HydeBladedown[%s]%s -->';
         return sprintf($format, $component, $id);
     }
