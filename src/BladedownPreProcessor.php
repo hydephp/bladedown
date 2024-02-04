@@ -47,6 +47,7 @@ class BladedownPreProcessor
     {
         $lines = explode("\n", $this->markdown);
 
+        // Since we process the lines one by one, we need to keep track of the processed lines
         $processedLines = [];
 
         $inComponent = false;
