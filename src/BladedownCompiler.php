@@ -6,5 +6,10 @@ namespace Hyde\Bladedown;
 
 class BladedownCompiler
 {
-    //
+    protected BladedownPage $page;
+
+    public function __construct(BladedownPage $page)
+    {
+        $this->page = $page;
+    }
 }
