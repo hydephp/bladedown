@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Hyde\Bladedown;
 
+use Illuminate\Support\HtmlString;
+
 class BladedownCompiler
 {
     protected BladedownPage $page;
+
+    protected string $html;
 
     public function __construct(BladedownPage $page)
     {
@@ -15,6 +19,8 @@ class BladedownCompiler
 
     public function compile(): string
     {
+        $this->html = $this->page->markdown->toHtml($this->page::class)->toHtml();
+
         return $this->compilePageView();
     }
 
@@ -22,7 +28,7 @@ class BladedownCompiler
     {
         return array_merge($this->page->matter->toArray(), [
             'title' => $this->page->title,
-            'content' => $this->page->markdown->toHtml(static::class),
+            'content' => new HtmlString($this->html),
         ]);
     }
 
