@@ -72,6 +72,11 @@ class BladedownPreProcessor
             }
         }
 
+        // Detect unclosed components
+        if ($inComponent) {
+            throw new \Exception('Unclosed @component directive. Close it with @endcomponent, or use @include instead.');
+        }
+
         $this->markdown = implode("\n", $processedLines);
     }
 
