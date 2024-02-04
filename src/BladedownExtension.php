@@ -10,7 +10,7 @@ class BladedownExtension extends HydeExtension
     public static function getPageClasses(): array
     {
         return [
-            // Hyde\Bladedown\Pages\MyPage::class,
+            BladedownPage::class,
         ];
     }
 }
