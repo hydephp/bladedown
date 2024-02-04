@@ -9,6 +9,13 @@ use Illuminate\Support\HtmlString;
 
 /**
  * Compiles a BladedownPage instance into the final HTML.
+ *
+ * The pipeline works as follows:
+ * - tokenizing the Markdown to find Blade blocks,
+ * - replacing Blade blocks with placeholders,
+ * - rendering the Markdown to HTML,
+ * - rendering the Blade into HTML,
+ * - replacing the placeholders with the rendered Blade HTML.
  */
 class BladedownCompiler
 {
