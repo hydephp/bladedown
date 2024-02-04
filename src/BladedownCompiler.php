@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Hyde\Bladedown;
 
 use Illuminate\Support\HtmlString;
+use Hyde\Markdown\Models\Markdown;
 
 class BladedownCompiler
 {
@@ -19,7 +20,7 @@ class BladedownCompiler
 
     public function compile(): string
     {
-        $this->html = $this->page->markdown->compile($this->page::class);
+        $this->html = Markdown::render($this->page->markdown->body(), $this->page::class);
 
         return $this->compilePageView();
     }
