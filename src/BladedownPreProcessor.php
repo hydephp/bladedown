@@ -80,11 +80,9 @@ class BladedownPreProcessor
                     $placeholder = $this->makePlaceholder('Component', $line);
                     $this->blocks[$placeholder] = $line;
                     $processedLines[] = $placeholder;
-
-                    continue;
+                } else {
+                    $processedLines[] = $line;
                 }
-
-                $processedLines[] = $line;
             }
         }
 
