@@ -12,4 +12,9 @@ class BladedownCompiler
     {
         $this->page = $page;
     }
+
+    public function compile(): string
+    {
+        //
+    }
 }
