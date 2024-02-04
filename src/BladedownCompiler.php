@@ -7,6 +7,7 @@ namespace Hyde\Bladedown;
 use Hyde\Markdown\Models\Markdown;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Facades\Blade;
+use Hyde\Markdown\Processing\BladeDownProcessor;
 
 /**
  * Compiles a BladedownPage instance into the final HTML.
@@ -60,16 +61,7 @@ class BladedownCompiler
      */
     protected function preprocess(string $markdown): string
     {
-        // Replace Echo syntax {{ $variable }} with placeholders
-
-        $matches = [];
-        if (preg_match_all('/\{\{.*?\}\}/s', $markdown, $matches)) {
-            foreach ($matches[0] as $match) {
-                $placeholder = $this->makePlaceholder('Echo', $match);
-                $this->blocks[$placeholder] = $match;
-                $markdown = str_replace($match, $placeholder, $markdown);
-            }
-        }
+        [$markdown, $this->blocks] = BladedownPreProcessor::process($markdown);
 
         return $markdown;
     }
@@ -113,10 +105,5 @@ class BladedownCompiler
     protected function compileMarkdown(string $markdown): string
     {
         return Markdown::render($markdown, BladedownPage::class);
-    }
-
-    protected function makePlaceholder(string $component, string $content): string
-    {
-        return sprintf('<!-- HydeBladedown[%s]%s -->', $component, sha1("$component-$content"));
     }
 }
