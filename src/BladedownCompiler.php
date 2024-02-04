@@ -15,7 +15,7 @@ class BladedownCompiler
 
     public function compile(): string
     {
-        return view($this->page->getBladeView(), $this->getViewData())->render();
+        return $this->compilePageView();
     }
 
     protected function getViewData(): array
@@ -24,5 +24,10 @@ class BladedownCompiler
             'title' => $this->page->title,
             'content' => $this->page->markdown->toHtml(static::class),
         ]);
+    }
+
+    protected function compilePageView(): string
+    {
+        return view($this->page->getBladeView(), $this->getViewData())->render();
     }
 }
