@@ -65,7 +65,7 @@ name: World
 @include('components.alert', ['type' => 'error'])
 
 @component('components.alert')
-Something went wrong
+    Something went wrong
 @endcomponent
 ```
 
