@@ -56,9 +56,14 @@ class BladedownCompiler
         return $html;
     }
 
+    protected function getBaseViewData(): array
+    {
+        return $this->page->matter->toArray();
+    }
+
     protected function getViewData(): array
     {
-        return array_merge($this->page->matter->toArray(), [
+        return array_merge($this->getBaseViewData(), [
             'title' => $this->page->title,
             'content' => new HtmlString($this->html),
         ]);
