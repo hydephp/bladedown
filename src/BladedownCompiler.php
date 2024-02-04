@@ -66,8 +66,8 @@ class BladedownCompiler
         if (preg_match_all('/\{\{.*?\}\}/s', $markdown, $matches)) {
             foreach ($matches[0] as $match) {
                 $id = sha1('HydeBladedown[Echo]'.$match);
-                $format = '<!-- HydeBladedown[Echo]%s -->';
-                $placeholder = sprintf($format, $id);
+                $format = '<!-- HydeBladedown[%s]%s -->';
+                $placeholder = sprintf($format, 'Echo', $id);
                 $this->blocks[$placeholder] = $match;
                 $markdown = str_replace($match, $placeholder, $markdown);
             }
