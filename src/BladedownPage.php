@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Hyde\Bladedown;
 
-class BladedownPage
+use Hyde\Pages\MarkdownPage;
+
+class BladedownPage extends MarkdownPage
 {
     //
 }
