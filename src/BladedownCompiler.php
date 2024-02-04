@@ -22,9 +22,21 @@ class BladedownCompiler
     public function compile(): string
     {
         $this->markdown = $this->page->markdown->body();
+        $this->markdown = $this->preprocess($this->markdown);
         $this->html = $this->compileMarkdown($this->markdown);
+        $this->html = $this->postprocess($this->html);
 
         return $this->compilePageView();
+    }
+
+    protected function preprocess(string $markdown): string
+    {
+        return $markdown;
+    }
+
+    protected function postprocess(string $html): string
+    {
+        return $html;
     }
 
     protected function getViewData(): array
