@@ -22,7 +22,7 @@ class BladedownCompiler
     public function compile(): string
     {
         $this->markdown = $this->page->markdown->body();
-        $this->html = $this->compileMarkdown();
+        $this->html = $this->compileMarkdown($this->markdown);
 
         return $this->compilePageView();
     }
@@ -40,8 +40,8 @@ class BladedownCompiler
         return view($this->page->getBladeView(), $this->getViewData())->render();
     }
 
-    protected function compileMarkdown(): string
+    protected function compileMarkdown(string $markdown): string
     {
-        return Markdown::render($this->markdown, BladedownPage::class);
+        return Markdown::render($markdown, BladedownPage::class);
     }
 }
