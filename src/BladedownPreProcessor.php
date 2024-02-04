@@ -56,6 +56,11 @@ class BladedownPreProcessor
 
         foreach ($lines as $line) {
             if (str_starts_with($line, '@component') || str_starts_with($line, '<x-')) {
+                // Detect unclosed components
+                if ($inComponent) {
+                    throw new \Exception('Component parse error: Unexpected opening tag. Did you forget to close a component tag?');
+                }
+
                 // Start processing a new component
                 $inComponent = true;
                 $componentLineBuffer[] = $line;
