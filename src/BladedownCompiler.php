@@ -15,6 +15,9 @@ class BladedownCompiler
 
     public function compile(): string
     {
-        //
+        return view($this->page->getBladeView(), [
+            'title' => $this->page->title,
+            'content' => $this->page->markdown->toHtml(static::class),
+        ])->render();
     }
 }
