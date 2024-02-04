@@ -16,6 +16,9 @@ use Illuminate\Support\HtmlString;
  * - rendering the Markdown to HTML,
  * - rendering the Blade into HTML,
  * - replacing the placeholders with the rendered Blade HTML.
+ *
+ * To aid implementation, {@see \Illuminate\View\Compilers\BladeCompiler} ({@link https://github.com/illuminate/view/blob/master/Compilers/BladeCompiler.php})
+ * for the Laravel Blade compiler for a reference on the Blade syntax and it's naming conventions.
  */
 class BladedownCompiler
 {
