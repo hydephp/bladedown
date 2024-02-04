@@ -24,23 +24,21 @@ class BladedownPreProcessor
     {
         $processor = new static($markdown);
 
-        $processor->markdown = $processor->processEchoBlocks($processor->markdown);
+        $processor->processEchoBlocks();
 
         return $processor;
     }
 
     // Replace Echo syntax {{ $variable }} with placeholders
-    protected function processEchoBlocks(string $markdown): string
+    protected function processEchoBlocks(): void
     {
-        if (preg_match_all('/\{\{.*?\}\}/s', $markdown, $matches)) {
+        if (preg_match_all('/\{\{.*?\}\}/s', $this->markdown, $matches)) {
             foreach ($matches[0] as $match) {
                 $placeholder = $this->makePlaceholder('Echo', $match);
                 $this->blocks[$placeholder] = $match;
-                $markdown = str_replace($match, $placeholder, $markdown);
+                $this->markdown = str_replace($match, $placeholder, $this->markdown);
             }
         }
-
-        return $markdown;
     }
 
     protected function makePlaceholder(string $component, string $content): string
