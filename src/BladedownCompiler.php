@@ -27,6 +27,8 @@ class BladedownCompiler
     protected string $markdown;
     protected string $html;
 
+    protected array $blocks = [];
+
     public function __construct(BladedownPage $page)
     {
         $this->page = $page;
