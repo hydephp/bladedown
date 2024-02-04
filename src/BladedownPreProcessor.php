@@ -25,6 +25,7 @@ class BladedownPreProcessor
         $processor = new static($markdown);
 
         $processor->processEchoBlocks();
+        $processor->processComponentBlocks();
 
         return $processor;
     }
@@ -39,6 +40,39 @@ class BladedownPreProcessor
                 $this->markdown = str_replace($match, $placeholder, $this->markdown);
             }
         }
+    }
+
+    // Replace multiline Blade @components with placeholders
+    protected function processComponentBlocks(): void
+    {
+        $lines = explode("\n", $this->markdown);
+
+        $processedLines = [];
+
+        $inComponent = false;
+        $componentLineBuffer = [];
+
+        foreach ($lines as $line) {
+            if (str_starts_with($line, '@component')) {
+                $inComponent = true;
+                $componentLineBuffer[] = $line;
+            } elseif ($inComponent) {
+                $componentLineBuffer[] = $line;
+
+                if (str_starts_with($line, '@endcomponent')) {
+                    $inComponent = false;
+                    $componentSource = implode("\n", $componentLineBuffer);
+                    $placeholder = $this->makePlaceholder('Component', $componentSource);
+                    $this->blocks[$placeholder] = $componentSource;
+                    $processedLines[] = $placeholder;
+                    $componentLineBuffer = [];
+                }
+            } else {
+                $processedLines[] = $line;
+            }
+        }
+
+        $this->markdown = implode("\n", $processedLines);
     }
 
     protected function makePlaceholder(string $component, string $content): string
