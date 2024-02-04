@@ -20,7 +20,7 @@ class BladedownCompiler
 
     public function compile(): string
     {
-        $this->html = Markdown::render($this->page->markdown->body(), $this->page::class);
+        $this->html = Markdown::render($this->page->markdown->body(), BladedownPage::class);
 
         return $this->compilePageView();
     }
