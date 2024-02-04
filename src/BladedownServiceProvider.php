@@ -11,9 +11,4 @@ class BladedownServiceProvider extends ServiceProvider
     {
         $this->app->make(HydeKernel::class)->registerExtension(BladedownExtension::class);
     }
-
-    public function boot(): void
-    {
-        //
-    }
 }
