@@ -61,9 +61,10 @@ class BladedownCompiler
      */
     protected function preprocess(string $markdown): string
     {
-        [$markdown, $this->blocks] = BladedownPreProcessor::process($markdown);
+        $processor = BladedownPreProcessor::process($markdown);
+        $this->blocks = $processor->getBlocks();
 
-        return $markdown;
+        return $processor->getMarkdown();
     }
 
     protected function postprocess(string $html): string
