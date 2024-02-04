@@ -64,11 +64,19 @@ class BladedownPreProcessor
                 // Start processing a new component
                 $inComponent = true;
                 $componentLineBuffer[] = $line;
+
+                // If component is self-closing, we can close it right away
+                if (str_ends_with($line, '/>')) {
+                    // TODO: Refactor to be less evil
+                    goto closeComponent;
+                }
             } elseif ($inComponent) {
                 // Continue processing the current component
                 $componentLineBuffer[] = $line;
 
                 if (str_starts_with($line, '@endcomponent') || str_starts_with($line, '</x-')) {
+                    closeComponent:
+
                     // Close the current component
                     $inComponent = false;
                     $componentSource = implode("\n", $componentLineBuffer);
