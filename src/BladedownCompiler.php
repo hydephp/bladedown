@@ -11,6 +11,7 @@ class BladedownCompiler
 {
     protected BladedownPage $page;
 
+    protected string $markdown;
     protected string $html;
 
     public function __construct(BladedownPage $page)
@@ -20,7 +21,8 @@ class BladedownCompiler
 
     public function compile(): string
     {
-        $this->html = Markdown::render($this->page->markdown->body(), BladedownPage::class);
+        $this->markdown = $this->page->markdown->body();
+        $this->html = Markdown::render($this->markdown, BladedownPage::class);
 
         return $this->compilePageView();
     }
