@@ -43,6 +43,9 @@ class BladedownCompiler
         return $this->compilePageView();
     }
 
+    /**
+     * @todo We need to add checks to ensure we don't replace content inside code blocks.
+     */
     protected function preprocess(string $markdown): string
     {
         return $markdown;
