@@ -50,6 +50,7 @@ class BladedownPreProcessor
         $processedLines = [];
 
         $inComponent = false;
+        // Used to buffer the lines inside a component
         $componentLineBuffer = [];
 
         foreach ($lines as $line) {
