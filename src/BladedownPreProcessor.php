@@ -75,6 +75,15 @@ class BladedownPreProcessor
             } else {
                 // No component is being processed
 
+                if (str_starts_with($line, '@include')) {
+                    // Directly replace the single-line component with a placeholder
+                    $placeholder = $this->makePlaceholder('Component', $line);
+                    $this->blocks[$placeholder] = $line;
+                    $processedLines[] = $placeholder;
+
+                    continue;
+                }
+
                 $processedLines[] = $line;
             }
         }
