@@ -2,6 +2,10 @@
 
 **Blurring the lines between Blade and Markdown**
 
+## Alpha software warning ⚠️
+
+This package is currently a proof of concept, and is not even remotely ready for production use.
+
 ## Installation
 
 You can install the package via Composer:
