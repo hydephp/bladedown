@@ -27,6 +27,7 @@ class BladedownCompiler
     protected string $markdown;
     protected string $html;
 
+    /** @var array<string, string> [placeholder => Blade source] */
     protected array $blocks = [];
 
     public function __construct(BladedownPage $page)
