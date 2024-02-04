@@ -19,7 +19,7 @@ class BladedownCompiler
 
     public function compile(): string
     {
-        $this->html = $this->page->markdown->toHtml($this->page::class)->toHtml();
+        $this->html = $this->page->markdown->compile($this->page::class);
 
         return $this->compilePageView();
     }
