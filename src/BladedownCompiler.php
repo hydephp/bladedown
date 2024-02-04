@@ -40,6 +40,8 @@ class BladedownCompiler
         $this->markdown = $this->page->markdown->body();
         $this->markdown = $this->preprocess($this->markdown);
 
+        $this->blocks = $this->renderBlocks($this->blocks);
+
         $this->html = $this->compileMarkdown($this->markdown);
         $this->html = $this->postprocess($this->html);
 
@@ -56,7 +58,20 @@ class BladedownCompiler
 
     protected function postprocess(string $html): string
     {
+        foreach ($this->blocks as $placeholder => $source) {
+            $html = str_replace($placeholder, $source, $html);
+        }
+
         return $html;
+    }
+
+    protected function renderBlocks(array $blocks): array
+    {
+        foreach ($blocks as $placeholder => $source) {
+            $blocks[$placeholder] = Blade::render($source, $this->getBaseViewData());
+        }
+
+        return $blocks;
     }
 
     protected function getBaseViewData(): array
