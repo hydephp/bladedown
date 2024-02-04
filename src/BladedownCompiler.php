@@ -19,6 +19,12 @@ use Illuminate\Support\HtmlString;
  *
  * To aid implementation, {@see \Illuminate\View\Compilers\BladeCompiler} ({@link https://github.com/illuminate/view/blob/master/Compilers/BladeCompiler.php})
  * for the Laravel Blade compiler for a reference on the Blade syntax, and it's naming conventions.
+ *
+ * Known issues:
+ * - This experimental package is still in the proof of concept phase, and will contain bugs.
+ * - This compiler will replace content inside code blocks, which may sometimes be undesired.
+ * - Hyde parsing does not evaluate Blade, so for example using Blade in the front matter will not work.
+ *   - (The same goes for auto-discovered data like `# Hello, {{ $name }}`, where Hyde use the literal string for the page title, if not set in the front matter.)
  */
 class BladedownCompiler
 {
