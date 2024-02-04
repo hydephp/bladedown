@@ -11,5 +11,8 @@ namespace Hyde\Bladedown;
  */
 class BladedownPreProcessor
 {
-    //
+    public static function process(string $markdown): string
+    {
+        return $markdown;
+    }
 }
