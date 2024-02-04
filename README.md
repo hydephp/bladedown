@@ -20,7 +20,7 @@ General development tips:
 You can install the package via Composer:
 
 ```bash
-composer require vendor/package-name
+composer require hyde/bladedown
 ```
 
 ## Usage

@@ -1,12 +1,12 @@
 {
-  "name": "vendor/package-name",
+  "name": "hyde/bladedown",
   "description": "Enter a description for your package here",
   "keywords": [
     "hydephp",
     "package",
     "extension"
   ],
-  "homepage": "https://github.com/package-name",
+  "homepage": "https://github.com/hydephp/bladedown",
   "license": "MIT",
   "type": "library",
   "authors": [
