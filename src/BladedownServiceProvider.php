@@ -1,15 +1,15 @@
 <?php
 
-namespace Vendor\PackageName;
+namespace Hyde\Bladedown;
 
 use Hyde\Foundation\HydeKernel;
 use Illuminate\Support\ServiceProvider;
 
-class PackageNameServiceProvider extends ServiceProvider
+class BladedownServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->make(HydeKernel::class)->registerExtension(PackageNameExtension::class);
+        $this->app->make(HydeKernel::class)->registerExtension(BladedownExtension::class);
     }
 
     public function boot(): void

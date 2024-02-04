@@ -1,19 +1,19 @@
 <?php
 
-namespace Vendor\PackageName;
+namespace Hyde\Bladedown;
 
 use Hyde\Foundation\Concerns\HydeExtension;
 use Hyde\Foundation\Kernel\FileCollection;
 use Hyde\Foundation\Kernel\PageCollection;
 use Hyde\Foundation\Kernel\RouteCollection;
 
-class PackageNameExtension extends HydeExtension
+class BladedownExtension extends HydeExtension
 {
     /** @return array<class-string<\Hyde\Pages\Concerns\HydePage>> */
     public static function getPageClasses(): array
     {
         return [
-            // Vendor\PackageName\Pages\MyPage::class,
+            // Hyde\Bladedown\Pages\MyPage::class,
         ];
     }
 

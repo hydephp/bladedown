@@ -26,18 +26,18 @@
   },
   "autoload": {
     "psr-4": {
-      "Vendor\\PackageName\\": "src"
+      "Hyde\\Bladedown\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Vendor\\PackageName\\Tests\\": "tests"
+      "Hyde\\Bladedown\\Tests\\": "tests"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Vendor\\PackageName\\PackageNameServiceProvider"
+        "Hyde\\Bladedown\\BladedownServiceProvider"
       ]
     }
   },
