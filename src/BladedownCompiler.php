@@ -27,6 +27,7 @@ use Hyde\Markdown\Processing\BladeDownProcessor;
  * - This compiler will replace content inside code blocks, which may sometimes be undesired.
  * - Hyde parsing does not evaluate Blade, so for example using Blade in the front matter will not work.
  *   - (The same goes for auto-discovered data like `# Hello, {{ $name }}`, where Hyde use the literal string for the page title, if not set in the front matter.)
+ * - Components (@component and <x-component>) must be the first thing on a line, and not indented. This is by design.
  */
 class BladedownCompiler
 {
