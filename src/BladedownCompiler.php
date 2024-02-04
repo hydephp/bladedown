@@ -7,6 +7,9 @@ namespace Hyde\Bladedown;
 use Hyde\Markdown\Models\Markdown;
 use Illuminate\Support\HtmlString;
 
+/**
+ * Compiles a BladedownPage instance into the final HTML.
+ */
 class BladedownCompiler
 {
     protected BladedownPage $page;
