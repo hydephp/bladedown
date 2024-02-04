@@ -54,12 +54,15 @@ class BladedownPreProcessor
 
         foreach ($lines as $line) {
             if (str_starts_with($line, '@component') || str_starts_with($line, '<x-')) {
+                // Start processing a new component
                 $inComponent = true;
                 $componentLineBuffer[] = $line;
             } elseif ($inComponent) {
+                // Continue processing the current component
                 $componentLineBuffer[] = $line;
 
                 if (str_starts_with($line, '@endcomponent') || str_starts_with($line, '</x-')) {
+                    // Close the current component
                     $inComponent = false;
                     $componentSource = implode("\n", $componentLineBuffer);
                     $placeholder = $this->makePlaceholder('Component', $componentSource);
@@ -68,6 +71,8 @@ class BladedownPreProcessor
                     $componentLineBuffer = [];
                 }
             } else {
+                // No component is being processed
+
                 $processedLines[] = $line;
             }
         }
