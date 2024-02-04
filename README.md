@@ -21,6 +21,21 @@ name: World
 
 # Hello, {{ $name }}!
 
+<x-tweet url='https://twitter.com/aarondfrancis/status/1705211030882684946'>
+    The best part about being 90% done with a project is that you're almost halfway finished!
+</x-tweet>
+
+<x-tweet url='https://twitter.com/aarondfrancis/status/1705211030882684946' text="The best part about being 90% done with a project is that you're almost halfway finished!" />
+
+
+<x-header image="media/my-image.png">
+    <x-slot name="title">
+        Lorem Ipsum
+    </x-slot>
+
+    Lorem ipsum dolor sit amet
+</x-header>
+
 @push('header')
 ## My header
 @endpush
