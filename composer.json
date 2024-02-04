@@ -1,10 +1,12 @@
 {
     "name": "hyde/bladedown",
-    "description": "Enter a description for your package here",
+    "description": "Blurring the lines between Blade and Markdown",
     "keywords": [
         "hydephp",
         "package",
-        "extension"
+        "extension",
+        "markdown",
+        "blade"
     ],
     "homepage": "https://github.com/hydephp/bladedown",
     "license": "MIT",
