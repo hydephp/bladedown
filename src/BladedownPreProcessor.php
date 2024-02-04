@@ -42,7 +42,7 @@ class BladedownPreProcessor
         }
     }
 
-    // Replace multiline Blade @components with placeholders
+    // Replace multiline Blade @components and <x-components> with placeholders
     protected function processComponentBlocks(): void
     {
         $lines = explode("\n", $this->markdown);
@@ -53,13 +53,13 @@ class BladedownPreProcessor
         $componentLineBuffer = [];
 
         foreach ($lines as $line) {
-            if (str_starts_with($line, '@component')) {
+            if (str_starts_with($line, '@component') || str_starts_with($line, '<x-')) {
                 $inComponent = true;
                 $componentLineBuffer[] = $line;
             } elseif ($inComponent) {
                 $componentLineBuffer[] = $line;
 
-                if (str_starts_with($line, '@endcomponent')) {
+                if (str_starts_with($line, '@endcomponent') || str_starts_with($line, '</x-')) {
                     $inComponent = false;
                     $componentSource = implode("\n", $componentLineBuffer);
                     $placeholder = $this->makePlaceholder('Component', $componentSource);
