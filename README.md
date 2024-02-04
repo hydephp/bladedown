@@ -15,6 +15,10 @@ composer require hyde/bladedown
 This package adds a new page type, `.blade.md`, which is a combination of Blade and Markdown. This allows you to use Blade directives in your Markdown files.
 
 ```markdown
+---
+name: World
+---
+
 # Hello, {{ $name }}!
 
 @push('header')
