@@ -1,3 +1,7 @@
-# Example Page
+---
+name: World
+---
 
-This example page is just plain Markdown.
+# Bladedown Test Page
+
+## Hello, {{ $name }}!
