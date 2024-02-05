@@ -1,5 +1,11 @@
 @props(['message' => null])
 
-<p>
-    Example component was called with {{ $message ?? 'no message' }}
-</p>
+@if(filled((string) $slot))
+    <p>
+        {{ $slot }}
+    </p>
+@else
+    <p>
+        Example component was called with {{ $message ?? 'no message' }}
+    </p>
+@endif

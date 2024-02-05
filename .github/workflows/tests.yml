@@ -50,6 +50,7 @@ jobs:
           php bladedown/tests/bin/assert.php "file_contains('hyde/_site/index.html', 'Hello, World!')"
           php bladedown/tests/bin/assert.php "file_contains('hyde/_site/index.html', 'Example component was called with no message')"
           php bladedown/tests/bin/assert.php "file_contains('hyde/_site/index.html', 'Example component was called with custom message')"
+          php bladedown/tests/bin/assert.php "file_contains('hyde/_site/index.html', 'Example component with slot content')"
 
       - name: Upload built site
         uses: actions/upload-artifact@v4
