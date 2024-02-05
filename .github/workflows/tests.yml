@@ -23,8 +23,12 @@ jobs:
         run: |
           git clone https://github.com/hydephp/hyde.git --depth 1
           cp bladedown/tests/runner/composer.json hyde/composer.json
-          sed -i "s/hyde\/bladedown\": \"dev-main\"/hyde\/bladedown\": \"dev-${GITHUB_SHA}\"/g" hyde/composer.json
           rm hyde/_pages/*
+
+      - name: Configure pull request version
+        if: github.event_name == 'pull_request'
+        run: |
+          sed -i "s/hyde\/bladedown\": \"dev-main\"/hyde\/bladedown\": \"dev-${GITHUB_SHA}\"/g" hyde/composer.json
 
       - name: Install test environment
         working-directory: hyde
