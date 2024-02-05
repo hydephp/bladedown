@@ -1,15 +1,13 @@
 @props(['message' => null])
 
-@isset($title)
-    <strong>{{ $title }}</strong>
-@endisset
+<div style="border: 1px solid grey; padding: 1rem; margin-top: 1rem;">
+    @isset($title)
+        <strong>{{ $title }}</strong>
+    @endisset
 
-@if(filled((string) $slot))
-    <p>
+    @if(filled((string) $slot))
         {{ $slot }}
-    </p>
-@else
-    <p>
+    @else
         Example component was called with {{ $message ?? 'no message' }}
-    </p>
-@endif
+    @endif
+</div>
