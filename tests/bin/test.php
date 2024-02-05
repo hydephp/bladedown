@@ -42,3 +42,5 @@ testFileContainsExpectedStrings('hyde/_site/custom-layout.html', [
     'Hello, World!',
     'This is the custom layout.',
 ]);
+
+echo "All tests passed!\n";
