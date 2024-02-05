@@ -14,17 +14,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          path: bladedown
 
       - name: Install test environment
         run: |
           # Todo we can cache this
           git clone https://github.com/hydephp/hyde.git --depth 1
+          # Copy over our composer.json
+          cp bladedown/tests/runner/composer.json hyde/composer.json
           cd hyde
           composer install
 
       - name: Copy test fixtures
         run: |
-          cp -r tests/fixtures hyde/_pages
+          cp -r bladedown/tests/fixtures hyde/_pages
 
       - name: Test site can be built
         run: |
