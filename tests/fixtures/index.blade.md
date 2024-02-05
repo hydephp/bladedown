@@ -18,5 +18,6 @@ name: World
     <x-slot name="title">
         Custom title slot
     </x-slot>
+
     <div class="custom">Custom body slot with title</div>
 </x-example-component>
