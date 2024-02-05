@@ -1,17 +1,25 @@
 #!/usr/bin/env php
 <?php
 
+$strings = [
+    'Bladedown Test Page',
+    'Hello, World!',
+    'Example component was called with no message',
+    'Example component was called with custom message',
+    'Example component with slot content',
+    '<strong>Custom title slot</strong>',
+    '<div class=\"custom\">Custom body slot with title</div>',
+    '<blockquote class=\"my-0\" style=\"border-color: rebeccapurple\">',
+    'Component with custom <abbr title=\"HyperText Markup Language\">HTML</abbr> slot content"',
+];
+
+$strings = implode(' ', array_map(function ($string) {
+    return escapeshellarg($string);
+}, $strings));
+
 $assertions = [
     "file_exists_and_is_not_empty('hyde/_site/index.html')",
-    "file_contains('hyde/_site/index.html', 'Bladedown Test Page')",
-    "file_contains('hyde/_site/index.html', 'Hello, World!')",
-    "file_contains('hyde/_site/index.html', 'Example component was called with no message')",
-    "file_contains('hyde/_site/index.html', 'Example component was called with custom message')",
-    "file_contains('hyde/_site/index.html', 'Example component with slot content')",
-    "file_contains('hyde/_site/index.html', '<strong>Custom title slot</strong>')",
-    "file_contains('hyde/_site/index.html', '<div class=\"custom\">Custom body slot with title</div>')",
-    "file_contains('hyde/_site/index.html', '<blockquote class=\"my-0\" style=\"border-color: rebeccapurple\">')",
-    "file_contains('hyde/_site/index.html', 'Component with custom <abbr title=\"HyperText Markup Language\">HTML</abbr> slot content')",
+    "file_contains('hyde/_site/index.html', $strings)",
 ];
 
 // Add assertions to argv
