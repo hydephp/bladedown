@@ -1,0 +1,14 @@
+<?php
+
+return [
+    'paths' => [
+        resource_path('views'),
+        base_path('_pages'),
+        base_path('../bladedown/tests/runner/resources/views')
+    ],
+
+    'compiled' => env(
+        'VIEW_COMPILED_PATH',
+        realpath(storage_path('framework/views'))
+    ),
+];
