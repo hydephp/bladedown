@@ -43,9 +43,9 @@ jobs:
 
       - name: Assert pages were created
         run: |
-          php tests/bin/assert.php "file_exists_and_is_not_empty('hyde/_site/index.html')"
-          php tests/bin/assert.php "file_contains('hyde/_site/index.html', 'Bladedown Test Page')"
-          php tests/bin/assert.php "file_contains('hyde/_site/index.html', 'Hello, World!')"
+          php bladedown/tests/bin/assert.php "file_exists_and_is_not_empty('hyde/_site/index.html')"
+          php bladedown/tests/bin/assert.php "file_contains('hyde/_site/index.html', 'Bladedown Test Page')"
+          php bladedown/tests/bin/assert.php "file_contains('hyde/_site/index.html', 'Hello, World!')"
 
       - name: Upload built site
         uses: actions/upload-artifact@v4
