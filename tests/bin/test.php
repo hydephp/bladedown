@@ -15,7 +15,7 @@ function testFileContainsExpectedStrings(string $file, array $strings): void
     }
 }
 
-testFileContainsExpectedStrings(('hyde/_site/index.html'), [
+testFileContainsExpectedStrings('hyde/_site/index.html', [
     'Bladedown Test Page',
     'Hello, World!',
 
@@ -35,3 +35,12 @@ testFileContainsExpectedStrings(('hyde/_site/index.html'), [
     '<blockquote class="my-0" style="border-color: cornflowerblue">',
     'Include with custom <abbr title="HyperText Markup Language">HTML</abbr> slot content',
 ]);
+
+testFileContainsExpectedStrings('hyde/_site/custom-layout.html', [
+    '<title>Custom Layout</title>',
+    'border: 4px solid cornflowerblue;',
+    'Hello, World!',
+    'This is the custom layout.',
+]);
+
+echo "All tests passed!\n";

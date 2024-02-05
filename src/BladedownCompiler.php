@@ -92,6 +92,7 @@ class BladedownCompiler
 
     protected function getViewData(): array
     {
+        // Todo: If this is a custom view set in the front matter, we may want to alias the $content to $slot for compatibility.
         return array_merge($this->getBaseViewData(), [
             'title' => $this->page->title,
             'content' => new HtmlString($this->html),
