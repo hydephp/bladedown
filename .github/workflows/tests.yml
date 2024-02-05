@@ -30,3 +30,7 @@ jobs:
         run: |
           cd hyde
           php hyde build
+
+      - name: Assert pages were created
+        run: |
+            test -f hyde/_site/index.html
