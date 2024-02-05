@@ -13,16 +13,13 @@ $strings = [
     'Component with custom <abbr title=\"HyperText Markup Language\">HTML</abbr> slot content"',
 ];
 
-$strings = implode(' ', array_map(function ($string) {
-    return escapeshellarg($string);
-}, $strings));
+$file = file_get_contents('hyde/_site/index.html');
 
-$assertions = [
-    "file_exists_and_is_not_empty('hyde/_site/index.html')",
-    "file_contains('hyde/_site/index.html', $strings)",
-];
-
-// Add assertions to argv
-$argv = array_merge([__FILE__], $assertions);
-
-require __DIR__.'/assert.php';
+foreach ($strings as $string) {
+    if (str_contains($file, $string)) {
+        echo "✔ '$string' found in index.html\n";
+    } else {
+        echo "❌ '$string' not found in index.html\n";
+        exit(1);
+    }
+}
