@@ -18,6 +18,7 @@ function testFileContainsExpectedStrings(string $file, array $strings): void
 testFileContainsExpectedStrings(('hyde/_site/index.html'), [
     'Bladedown Test Page',
     'Hello, World!',
+
     'Example component was called with no message',
     'Example component was called with custom message',
     'Example component with slot content',
@@ -25,4 +26,12 @@ testFileContainsExpectedStrings(('hyde/_site/index.html'), [
     '<div class="custom">Custom body slot with title</div>',
     '<blockquote class="my-0" style="border-color: rebeccapurple">',
     'Component with custom <abbr title="HyperText Markup Language">HTML</abbr> slot content',
+
+    'Example include was called with no message',
+    'Example include was called with custom message',
+    'Example include with slot content',
+    '<strong>Custom included title slot</strong>',
+    '<div class="custom">Custom included body slot with title</div>',
+    '<blockquote class="my-0" style="border-color: cornflowerblue">',
+    'Include with custom <abbr title="HyperText Markup Language">HTML</abbr> slot content',
 ]);

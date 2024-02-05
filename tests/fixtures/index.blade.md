@@ -6,6 +6,10 @@ name: World
 
 ## Hello, {{ $name }}!
 
+---
+
+## New x-component syntax
+
 <x-example-component />
 
 <x-example-component message="custom message" />
@@ -29,3 +33,31 @@ name: World
         </p>   
     </blockquote>
 </x-example-component>
+
+---
+
+## Classic @component syntax
+
+@include('example-include')
+
+@include('example-include', ['message' => 'custom message'])
+
+@component('example-include')
+    Example include with slot content
+@endcomponent
+
+@component('example-include')
+    @slot('title')
+        Custom included title slot
+    @endslot
+
+    <div class="custom">Custom included body slot with title</div>
+@endcomponent
+
+@component('example-include')
+    <blockquote class="my-0" style="border-color: cornflowerblue">
+        <p>
+            Include with custom <abbr title="HyperText Markup Language">HTML</abbr> slot content 
+        </p>   
+    </blockquote>
+@endcomponent
