@@ -15,7 +15,7 @@ function testFileContainsExpectedStrings(string $file, array $strings): void
     }
 }
 
-testFileContainsExpectedStrings(('hyde/_site/index.html'), [
+testFileContainsExpectedStrings('hyde/_site/index.html', [
     'Bladedown Test Page',
     'Hello, World!',
 
