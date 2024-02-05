@@ -8,6 +8,8 @@ $assertions = [
     "file_contains('hyde/_site/index.html', 'Example component was called with no message')",
     "file_contains('hyde/_site/index.html', 'Example component was called with custom message')",
     "file_contains('hyde/_site/index.html', 'Example component with slot content')",
+    "file_contains('hyde/_site/index.html', '<strong>Custom title slot</strong>')",
+    "file_contains('hyde/_site/index.html', '<div class=\"custom\">Custom body slot with title</div>')",
 ];
 
 // Add assertions to argv

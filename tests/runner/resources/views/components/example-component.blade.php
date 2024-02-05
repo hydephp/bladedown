@@ -1,5 +1,9 @@
 @props(['message' => null])
 
+@isset($title)
+    <strong>{{ $title }}</strong>
+@endisset
+
 @if(filled((string) $slot))
     <p>
         {{ $slot }}
