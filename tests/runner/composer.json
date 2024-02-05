@@ -1,0 +1,48 @@
+{
+    "name": "hyde/hyde",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "hyde/bladedown": "dev-main",
+        "hyde/framework": "^1.4",
+        "laravel-zero/framework": "^10.0"
+    },
+    "require-dev": {
+        "hyde/realtime-compiler": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hyde\\Testing\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php -r \"@unlink('./app/storage/framework/cache/packages.php');\"",
+            "@php hyde package:discover --ansi"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../bladedown"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "bin": [
+        "hyde"
+    ]
+}
