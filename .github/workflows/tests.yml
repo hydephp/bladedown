@@ -1,0 +1,32 @@
+name: Run tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install test environment
+        run: |
+          # Todo we can cache this
+          git clone https://github.com/hydephp/hyde.git --depth 1
+          cd hyde
+          composer install
+
+      - name: Copy test fixtures
+        run: |
+          cp -r tests/fixtures hyde/_pages
+
+      - name: Test site can be built
+        run: |
+          cd hyde
+          php hyde build
