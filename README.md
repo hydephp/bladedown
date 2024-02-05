@@ -105,14 +105,22 @@ name: World
 </x-slot>
 ```
 
-## Contributing
+## Information
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+### Contributing
 
-## Security Vulnerabilities
+Contributions are welcome. Please see the [hydephp/develop](https://github.com/hydephp/develop/issues) monorepo for details.
+
+### Security Considerations
+
+Remember that this package by design allows you to execute any arbitrary PHP code, regardless of the default HydePHP Markdown security settings.
+
+The package assumes that you trust the authors of the Bladedown files, and take the same care as you would with any other PHP file in your project.
+
+### Security Vulnerabilities
 
 Please review the [security policy](../../security/policy) on how to report security vulnerabilities.
 
-## License
+### License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
