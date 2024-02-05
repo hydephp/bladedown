@@ -8,9 +8,9 @@ $strings = [
     'Example component was called with custom message',
     'Example component with slot content',
     '<strong>Custom title slot</strong>',
-    '<div class=\"custom\">Custom body slot with title</div>',
-    '<blockquote class=\"my-0\" style=\"border-color: rebeccapurple\">',
-    'Component with custom <abbr title=\"HyperText Markup Language\">HTML</abbr> slot content"',
+    '<div class="custom">Custom body slot with title</div>',
+    '<blockquote class="my-0" style="border-color: rebeccapurple">',
+    'Component with custom <abbr title="HyperText Markup Language">HTML</abbr> slot content"',
 ];
 
 $file = file_get_contents('hyde/_site/index.html');
