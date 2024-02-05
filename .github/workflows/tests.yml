@@ -35,15 +35,16 @@ jobs:
         run: composer install --no-interaction --no-progress --no-dev
 
       - name: Copy test fixtures
-        run: cp -r bladedown/tests/fixtures/. hyde/_pages
+        run: |
+          cp -r bladedown/tests/fixtures/. hyde/_pages
+          cp -r bladedown/tests/runner/resources/. hyde/resources
 
       - name: Test site can be built
         working-directory: hyde
         run: php hyde build --no-ansi
 
       - name: Assert pages were created
-        run: |
-            test -f hyde/_site/index.html
+        run: php bladedown/tests/bin/test.php
 
       - name: Upload built site
         uses: actions/upload-artifact@v4
