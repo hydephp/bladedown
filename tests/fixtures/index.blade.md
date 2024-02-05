@@ -21,3 +21,11 @@ name: World
 
     <div class="custom">Custom body slot with title</div>
 </x-example-component>
+
+<x-example-component>
+    <blockquote class="my-0" style="border-color: rebeccapurple">
+        <p>
+            Component with custom <abbr title="HyperText Markup Language">HTML</abbr> slot content 
+        </p>   
+    </blockquote>
+</x-example-component>

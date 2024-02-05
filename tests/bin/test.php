@@ -10,6 +10,8 @@ $assertions = [
     "file_contains('hyde/_site/index.html', 'Example component with slot content')",
     "file_contains('hyde/_site/index.html', '<strong>Custom title slot</strong>')",
     "file_contains('hyde/_site/index.html', '<div class=\"custom\">Custom body slot with title</div>')",
+    "file_contains('hyde/_site/index.html', '<blockquote class=\"my-0\" style=\"border-color: rebeccapurple\">')",
+    "file_contains('hyde/_site/index.html', 'Component with custom <abbr title=\"HyperText Markup Language\">HTML</abbr> slot content')",
 ];
 
 // Add assertions to argv
