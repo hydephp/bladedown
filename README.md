@@ -16,9 +16,9 @@ composer require hyde/bladedown
 
 ## Usage
 
-This package adds a new page type, `.blade.md`, which is a combination of Blade and Markdown. This allows you to use Blade directives in your Markdown files.
+This package adds a new "Bladematter" page type using `.blade.md`, which is a combination of Blade and Markdown. This allows you to use Blade directives in your Markdown files.
 
-```blade
+```markdown
 ---
 name: World
 ---
@@ -40,7 +40,7 @@ Lorem ipsum dolor sit amet.
 @include('related-posts')
 
 @push('footer')
-<script src="https://example.com/script.js"></script>
+    <script src="https://example.com/script.js"></script>
 @endpush
 ```
 
@@ -107,9 +107,9 @@ The push directive allows you to push to any stack in your layout. Perfect if yo
 @endpush
 
 @push('footer')
-<script>
-    console.log('Hello, World!');
-</script>
+    <script>
+        console.log('Hello, World!');
+    </script>
 @endpush
 ```
 
