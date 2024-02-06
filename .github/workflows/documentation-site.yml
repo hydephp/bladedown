@@ -25,9 +25,10 @@ jobs:
           use_play_cdn: true
           output_directories:
             documentation-page: ''
-          " > docs/hyde.yml
+          " > hyde/hyde.yml
 
       - uses: hydephp/action@master
         with:
           deploy-to: "pages"
+          directory: "hyde"
           env-torchlight-token: ${{ secrets.TORCHLIGHT_TOKEN }}
