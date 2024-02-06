@@ -1,0 +1,33 @@
+name: Build and Deploy HydePHP Documentation Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      pages: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Hyde site
+        run: |
+          mkdir hyde && mkdir hyde/_docs
+          mv README.md hyde/_docs/index.md
+          echo "# Sample configuration
+          name: My HydePHP Package
+          load_app_styles_from_cdn: true
+          use_play_cdn: true
+          output_directories:
+            documentation-page: ''
+          " > docs/hyde.yml
+
+      - uses: hydephp/action@master
+        with:
+          deploy-to: "pages"
+          env-torchlight-token: ${{ secrets.TORCHLIGHT_TOKEN }}
