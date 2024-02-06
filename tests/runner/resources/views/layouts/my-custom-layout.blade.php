@@ -20,5 +20,23 @@
     <footer style="text-align: center; margin-top: 2rem;">
         This is the custom layout.
     </footer>
+
+    <section style="border: 2px solid grey; padding: 0 1rem; margin: 2rem auto; max-width: 800px;">
+        <h2>Stack testing</h2>
+
+        Below are stacks that can be pushed to from the pages.
+
+        <header>
+            <h3>Header stack</h3>
+
+            @stack('header')
+        </header>
+
+        <footer>
+            <h3>Footer stack</h3>
+
+            @stack('footer')
+        </footer>
+    </section>
 </body>
 </html>

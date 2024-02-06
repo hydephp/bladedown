@@ -10,3 +10,22 @@ name: World
 This uses the custom layout `layouts.my-custom-layout` and sets the background to `cornflowerblue`.
 
 [Back to index](/)
+
+[//]: # (---)
+
+@push('header')
+This was pushed to the layout's header section.
+@endpush
+
+@push('header')
+Stacks can be pushed to multiple times.
+@endpush
+
+@push('footer')
+Of course, you can also use HTML and scripts.
+
+<script>
+    console.log('Hello, World! (From footer push)');
+</script>
+@endpush
+
