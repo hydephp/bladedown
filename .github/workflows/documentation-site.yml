@@ -20,7 +20,7 @@ jobs:
           mkdir hyde && mkdir hyde/_docs
           mv README.md hyde/_docs/index.md
           echo "# Sample configuration
-          name: My HydePHP Package
+          name: Bladedown Extension
           load_app_styles_from_cdn: true
           use_play_cdn: true
           output_directories:
