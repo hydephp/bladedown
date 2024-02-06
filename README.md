@@ -109,19 +109,7 @@ The push directive allows you to push to any stack in your layout.
 @endpush
 ```
 
-Note that only `@push` is supported and not similar ones like `@prepend`, `@pushonce`, `@pushIf`.
-
-### Upcoming
-
-```markdown
-<x-slot name="footer-slot">
-    <p>This is a named footer slot from the Bladedown file.</p>
-</x-slot>
-
-<x-slot:short-footer-slot>
-    <p>This is a short named footer slot from the Bladedown file.</p>
-</x-slot>
-```
+Note that only `@push` is supported and not similar ones like `@prepend`, `@pushonce`, `@pushIf`, or named layout `x-slots`.
 
 ## Information
 
