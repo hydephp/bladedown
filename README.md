@@ -114,8 +114,12 @@ Note that only `@push` is supported and not similar ones like `@prepend`, `@push
 ### Upcoming
 
 ```markdown
-<x-slot name="footer">
-    ## My footer
+<x-slot name="footer-slot">
+    <p>This is a named footer slot from the Bladedown file.</p>
+</x-slot>
+
+<x-slot:short-footer-slot>
+    <p>This is a short named footer slot from the Bladedown file.</p>
 </x-slot>
 ```
 
