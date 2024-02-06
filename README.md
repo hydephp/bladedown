@@ -65,7 +65,6 @@ name: World
 ### Including components
 
 ```markdown
-
 @include('components.alert')
 
 @include('components.alert', ['type' => 'error'])
