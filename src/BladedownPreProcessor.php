@@ -110,41 +110,45 @@ class BladedownPreProcessor
         $this->markdown = implode("\n", $processedLines);
     }
 
-    // Process @push and @stack directives (currently only @push to keep it simple)
+    // Process @push directives
     protected function processStackBlocks(): void
     {
-        $stacks = [];
         $lines = explode("\n", $this->markdown);
+
         $processedLines = [];
-        $inStack = false;
         $stackBuffer = [];
+        $inStack = null;
 
         foreach ($lines as $line) {
             if (str_starts_with($line, '@push')) {
-                // Start a new stack
-                $inStack = true;
-                $stackName = trim(str_replace(['@push', '(', ')', "'"], '', $line));
+                // We've found a new stack, so we initialize the buffer with the stack name
+
+                $inStack = trim(str_replace(['@push', '(', ')', "'"], '', $line));
             } elseif (str_starts_with($line, '@endpush')) {
-                // Close the current stack
-                $inStack = false;
+                // We've reached the end of a stack, so we close the stack
+                // and add it to the buffer, so we can inject it later.
 
-
-                $stacks[] = [
-                    'name' => $stackName,
+                $this->stacks[] = [
+                    'name' => $inStack,
                     'type' => 'push', // todo support more
                     'content' => implode("\n", $stackBuffer),
                 ];
 
-                $stackBuffer =[];
+                $stackBuffer = [];
+                $inStack = null;
             } elseif ($inStack) {
+                // Buffer the line of the stack directive contents.
+
                 $stackBuffer[] = $line;
             } else {
+                // Since the stacks are not part of the page content,
+                // we don't add any placeholders, instead we just
+                // remove the pushes from the Markdown content.
+
                 $processedLines[] = $line;
             }
         }
 
-        // Stacks and pushes can't be rendered directly, add them to a special buffer
-        $this->stacks = $stacks;
         $this->markdown = implode("\n", $processedLines);
     }
 
