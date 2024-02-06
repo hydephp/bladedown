@@ -38,6 +38,9 @@ class BladedownCompiler
     /** @var array<string, string> [placeholder => Blade source] */
     protected array $blocks = [];
 
+    /** @var array<string, array{name: string, type: string, content: string}> */
+    protected array $stacks = [];
+
     public function __construct(BladedownPage $page)
     {
         $this->page = $page;
@@ -63,6 +66,7 @@ class BladedownCompiler
     {
         $processor = BladedownPreProcessor::process($markdown);
         $this->blocks = $processor->getBlocks();
+        $this->stacks = $processor->getStacks();
 
         return $processor->getMarkdown();
     }
@@ -101,7 +105,24 @@ class BladedownCompiler
 
     protected function compilePageView(): string
     {
-        return view($this->page->getBladeView(), $this->getViewData())->render();
+        $view = app('view');
+
+        if ($this->stacks) {
+            // Push the stacks to the view factory
+            foreach ($this->stacks as $data) {
+                $name = $data['name'];
+                $type = $data['type'];
+                $source = $data['content'];
+
+                if ($type === 'push') {
+                    $view->startPush($name, $source);
+                } else {
+                    abort(501, "Stack type '$type' not implemented");
+                }
+            }
+        }
+
+        return $view->make($this->page->getBladeView(), $this->getViewData())->render();
     }
 
     protected function compileMarkdown(string $markdown): string

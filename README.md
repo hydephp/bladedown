@@ -93,13 +93,27 @@ name: World
 </x-header>
 ```
 
-### Upcoming
+### Pushing to stacks
+
+The push directive allows you to push to any stack in your layout.
 
 ```markdown
 @push('header')
     ## My header
 @endpush
 
+@push('footer')
+<script>
+    console.log('Hello, World!');
+</script>
+@endpush
+```
+
+Note that only `@push` is supported and not similar ones like `@prepend`, `@pushonce`, `@pushIf`.
+
+### Upcoming
+
+```markdown
 <x-slot name="footer">
     ## My footer
 </x-slot>

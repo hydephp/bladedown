@@ -13,11 +13,13 @@ class BladedownPreProcessor
 {
     protected string $markdown;
     protected array $blocks;
+    protected array $stacks;
 
     protected function __construct(string $markdown)
     {
         $this->markdown = $markdown;
         $this->blocks = [];
+        $this->stacks = [];
     }
 
     public static function process(string $markdown): static
@@ -26,6 +28,7 @@ class BladedownPreProcessor
 
         $processor->processEchoBlocks();
         $processor->processComponentBlocks();
+        $processor->processStackBlocks();
 
         return $processor;
     }
@@ -107,6 +110,48 @@ class BladedownPreProcessor
         $this->markdown = implode("\n", $processedLines);
     }
 
+    // Process @push directives
+    protected function processStackBlocks(): void
+    {
+        $lines = explode("\n", $this->markdown);
+
+        $processedLines = [];
+        $stackBuffer = [];
+        $inStack = null;
+
+        foreach ($lines as $line) {
+            if (str_starts_with($line, '@push')) {
+                // We've found a new stack, so we initialize the buffer with the stack name
+
+                $inStack = trim(str_replace(['@push', '(', ')', "'"], '', $line));
+            } elseif (str_starts_with($line, '@endpush')) {
+                // We've reached the end of a stack, so we close the stack
+                // and add it to the buffer, so we can inject it later.
+
+                $this->stacks[] = [
+                    'name' => $inStack,
+                    'type' => 'push', // todo support more
+                    'content' => implode("\n", $stackBuffer),
+                ];
+
+                $stackBuffer = [];
+                $inStack = null;
+            } elseif ($inStack) {
+                // Buffer the line of the stack directive contents.
+
+                $stackBuffer[] = $line;
+            } else {
+                // Since the stacks are not part of the page content,
+                // we don't add any placeholders, instead we just
+                // remove the pushes from the Markdown content.
+
+                $processedLines[] = $line;
+            }
+        }
+
+        $this->markdown = implode("\n", $processedLines);
+    }
+
     protected function makePlaceholder(string $component, string $content): string
     {
         return sprintf('<!-- HydeBladedown[%s]%s -->', $component, sha1("$component-$content"));
@@ -120,5 +165,10 @@ class BladedownPreProcessor
     public function getBlocks(): array
     {
         return $this->blocks;
+    }
+
+    public function getStacks(): array
+    {
+        return $this->stacks;
     }
 }

@@ -41,6 +41,11 @@ testFileContainsExpectedStrings('hyde/_site/custom-layout.html', [
     'border: 4px solid cornflowerblue;',
     'Hello, World!',
     'This is the custom layout.',
+
+    'This was pushed to the layout\'s header section.',
+    'Stacks can be pushed to multiple times.',
+    'Of course, you can also use HTML and scripts.',
+    "console.log('Hello, World! (From footer push)');"
 ]);
 
 echo "All tests passed!\n";
