@@ -109,8 +109,6 @@ class BladedownCompiler
             // We need to hook into the view factory to append the stacks to the environment
             $view = app('view');
 
-            // Set the view data and layout
-            $view->share($this->getViewData());
 
             // Push the stacks to the view factory
             foreach ($this->stacks as $data) {
@@ -126,9 +124,7 @@ class BladedownCompiler
             }
 
             // Convert factory to view
-            $view = $view->make($this->page->getBladeView());
-
-            return $view->render();
+            return $view->make($this->page->getBladeView(), $this->getViewData())->render();
         }
 
         return view($this->page->getBladeView(), $this->getViewData())->render();
