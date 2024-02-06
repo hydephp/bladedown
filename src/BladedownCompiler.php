@@ -105,11 +105,9 @@ class BladedownCompiler
 
     protected function compilePageView(): string
     {
+        $view = app('view');
+
         if ($this->stacks) {
-            // We need to hook into the view factory to append the stacks to the environment
-            $view = app('view');
-
-
             // Push the stacks to the view factory
             foreach ($this->stacks as $data) {
                 $name = $data['name'];
@@ -122,12 +120,9 @@ class BladedownCompiler
                     abort(501, "Stack type '$type' not implemented");
                 }
             }
-
-            // Convert factory to view
-            return $view->make($this->page->getBladeView(), $this->getViewData())->render();
         }
 
-        return view($this->page->getBladeView(), $this->getViewData())->render();
+        return $view->make($this->page->getBladeView(), $this->getViewData())->render();
     }
 
     protected function compileMarkdown(string $markdown): string
