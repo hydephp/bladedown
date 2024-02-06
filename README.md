@@ -1,4 +1,4 @@
-# Experimental HydePHP BladeDown Extension
+# Experimental HydePHP Bladedown Extension
 
 **Blurring the lines between Blade and Markdown**
 
@@ -52,7 +52,7 @@ Instead, the idea with this package is that you can easily include those compone
 
 ### Echoing variables
 
-All front matter properties are available as variables in the BladeDown file.
+All front matter properties are available as variables in the Bladedown file.
 
 ```markdown
 ---
