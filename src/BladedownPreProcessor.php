@@ -116,39 +116,35 @@ class BladedownPreProcessor
         $stacks = [];
         $lines = explode("\n", $this->markdown);
         $processedLines = [];
+        $inStack = false;
+        $stackBuffer = [];
 
         foreach ($lines as $line) {
             if (str_starts_with($line, '@push')) {
+                // Start a new stack
+                $inStack = true;
                 $stackName = trim(str_replace(['@push', '(', ')', "'"], '', $line));
-                $stacks[$stackName] = [];
-                // Add the @push line to the stack, so we can include it in the placeholder
-                //$stacks[$stackName][] = $line;
             } elseif (str_starts_with($line, '@endpush')) {
                 // Close the current stack
-                $stackName = array_key_last($stacks);
-                // Add the @endpush line to the stack, so we can include it in the placeholder
-                //$stacks[$stackName][] = $line;
+                $inStack = false;
 
-                //$processedLines[] = $this->makePlaceholder('Stack', implode("\n", $stacks[$stackName]));
-            } elseif (count($stacks) > 0) {
-                // We are inside a stack
-                $stackName = array_key_last($stacks);
-                $stacks[$stackName][] = $line;
+
+                $stacks[] = [
+                    'name' => $stackName,
+                    'type' => 'push', // todo support more
+                    'content' => implode("\n", $stackBuffer),
+                ];
+
+                $stackBuffer =[];
+            } elseif ($inStack) {
+                $stackBuffer[] = $line;
             } else {
                 $processedLines[] = $line;
             }
         }
 
         // Stacks and pushes can't be rendered directly, add them to a special buffer
-        foreach ($stacks as $stackName => $stackLines) {
-           // $this->stacks[$this->makePlaceholder('Stack', implode("\n", $stackLines))] = implode("\n", $stackLines);
-            $this->stacks[] = [
-                'name' => $stackName,
-                'type' => 'push', // todo support more
-                'content' => implode("\n", $stackLines),
-            ];
-        }
-
+        $this->stacks = $stacks;
         $this->markdown = implode("\n", $processedLines);
     }
 
