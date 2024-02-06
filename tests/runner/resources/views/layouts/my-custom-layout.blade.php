@@ -37,6 +37,8 @@
 
             @stack('footer')
         </footer>
+
+        <br>
     </section>
 </body>
 </html>

@@ -14,7 +14,7 @@ This uses the custom layout `layouts.my-custom-layout` and sets the background t
 [//]: # (---)
 
 @push('header')
-This was pushed to the layout's header section.
+<p>This was pushed to the layout's header section.</p>
 @endpush
 
 @push('header')
@@ -28,4 +28,3 @@ Of course, you can also use HTML and scripts.
     console.log('Hello, World! (From footer push)');
 </script>
 @endpush
-
