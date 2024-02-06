@@ -18,7 +18,7 @@ composer require hyde/bladedown
 
 This package adds a new page type, `.blade.md`, which is a combination of Blade and Markdown. This allows you to use Blade directives in your Markdown files.
 
-```markdown
+```blade
 ---
 name: World
 ---
@@ -66,7 +66,9 @@ name: World
 
 ### Including components
 
-```markdown
+#### Classic templating syntax
+
+```blade
 @include('related-posts')
 
 @include('related-posts', ['limit' => 5])
@@ -81,6 +83,8 @@ name: World
     @slot('answer') Yes, the styles are easily customizable to fit your design. @endslot
 @endcomponent
 ```
+
+#### Newer component syntax
 
 ```markdown
 <x-news-banner />
@@ -97,7 +101,7 @@ name: World
 
 The push directive allows you to push to any stack in your layout. Perfect if you need to add a script or style for a specific page.
 
-```markdown
+```blade
 @push('header')
     ## My header
 @endpush
@@ -109,7 +113,7 @@ The push directive allows you to push to any stack in your layout. Perfect if yo
 @endpush
 ```
 
-Note that only `@push` is supported and not similar ones like `@prepend`, `@pushonce`, `@pushIf`, or named layout `x-slots`.
+Note that only `@push` is supported and not similar ones like `@prepend` or conditional pushes.
 
 ## Information
 
