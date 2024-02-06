@@ -25,10 +25,6 @@ name: World
 
 # Hello, {{ $name }}!
 
-<x-tweet url='https://twitter.com/aarondfrancis/status/1705211030882684946'>
-    The best part about being 90% done with a project is that you're almost halfway finished!
-</x-tweet>
-
 <x-header image="media/my-image.png">
     <x-slot name="title">
         Lorem Ipsum
@@ -40,6 +36,12 @@ name: World
 ## More stuff
 
 Lorem ipsum dolor sit amet.
+
+@include('related-posts')
+
+@push('footer')
+<script src="https://example.com/script.js"></script>
+@endpush
 ```
 
 ## Supported components
@@ -65,36 +67,35 @@ name: World
 ### Including components
 
 ```markdown
-@include('components.alert')
+@include('related-posts')
 
-@include('components.alert', ['type' => 'error'])
+@include('related-posts', ['limit' => 5])
 
-@component('components.alert')
-    Something went wrong
+@component('faq-item')
+    @slot('question') How do I get started? @endslot
+    @slot('answer') Check our detailed documentation for step-by-step instructions. @endslot
+@endcomponent
+
+@component('faq-item')
+    @slot('question') Can I customize the appearance? @endslot
+    @slot('answer') Yes, the styles are easily customizable to fit your design. @endslot
 @endcomponent
 ```
 
 ```markdown
-<x-alert/>
+<x-news-banner />
 
-<x-alert type="error" />
+<x-news-banner message="New package released!" />
 
-<x-alert type="error">
-    Something went wrong
-</x-alert>
-
-<x-header image="media/my-image.png">
-    <x-slot name="title">
-        Lorem Ipsum
-    </x-slot>
-
-    Lorem ipsum dolor sit amet
-</x-header>
+<x-feature-card image="media/feature-image.png">
+    <x-slot name="title">Exciting Feature</x-slot>
+    <p>This feature allows you to do incredible things!</p>
+</x-feature-card>
 ```
 
 ### Pushing to stacks
 
-The push directive allows you to push to any stack in your layout.
+The push directive allows you to push to any stack in your layout. Perfect if you need to add a script or style for a specific page.
 
 ```markdown
 @push('header')
